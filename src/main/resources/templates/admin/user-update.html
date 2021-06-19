@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<form action="#" th:action="@{/admin/user-update/}" th:object="${user}" th:value="${user.getId()}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <br/>
+    <label for="surname">Surname</label>
+    <input type="text" th:field="*{surname}" id="surname" placeholder="Surname">
+    <br/>
+    <label for="age">Age</label>
+    <input type="number" th:field="*{age}" id="age" placeholder="Age">
+    <br/>
+    <label for="email">E-Mail</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="E-mail">
+    <br/>
+    <label for="login">Login</label>
+    <input type="text" th:field="*{login}" id="login" placeholder="Login">
+    <br/>
+
+    <label>Roles:
+        <input type="checkbox" name="roles"
+               th:each="role : ${setOfAllRoles}"
+               th:text="${role.getRole()}"
+               th:value="${role.getRole()}"
+               th:field="*{roles}"
+        />
+    </label>
+    <br/>
+
+    <input type="submit" value="Update User">
+    <br/>
+    <a th:href="@{/templates/admin}">Go back</a>
+    <br/>
+    <a th:href="@{/logout}">Log out</a>
+</form>
+</body>
+</html>

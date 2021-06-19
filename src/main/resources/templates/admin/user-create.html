@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+  <meta charset="UTF-8">
+  <title>Create user</title>
+</head>
+<body>
+<form action="#" th:action="@{/admin/user-create}" th:object="${user}" method="post">
+
+  <label for="name">Login</label>
+  <input type="text" th:field="*{login}" id="name" placeholder="Login">
+  </br>
+  <label for="name">Firstname</label>
+  <input type="text" th:field="*{name}" id="name" placeholder="Name">
+  </br>
+  <label for="surname">Surame</label>
+  <input type="text" th:field="*{surname}" id="surname" placeholder="Surname">
+  </br>
+  <label for="age">Age</label>
+  <input type="number" th:field="*{age}" id="age" placeholder="Age">
+  </br>
+  <label for="email">E-mail</label>
+  <input type="text" th:field="*{email}" id="email" placeholder="E-mail">
+  </br>
+  <label for="email">Password</label>
+  <input type="text" th:field="*{password}" id="password" placeholder="Password">
+  </br>
+
+  <input type="submit" value="Create User">
+
+  <sec:authorize access="isAuthenticated()">
+    <h4><a th:href="@{/logout}">Log out</a></h4>
+  </sec:authorize>
+</form>
+</body>
+</html>

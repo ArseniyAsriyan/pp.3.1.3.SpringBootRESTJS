@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<div>
+    <h3 th:text="${current_user}"></h3>
+<!--    <sec:authorize access="!isAuthenticated()">-->
+<!--    </sec:authorize>-->
+
+    <h4><a th:href="@{/user}">Show account information</a></h4>
+<!--    <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+    <h4 ><a th:href="@{/admin/}">Show all users</a></h4>
+<!--    </div>-->
+
+    <sec:authorize access="isAuthenticated()">
+        <h4><a th:href="@{/logout}">Log out</a></h4>
+    </sec:authorize>
+</div>
+
+</body>
+</html>
