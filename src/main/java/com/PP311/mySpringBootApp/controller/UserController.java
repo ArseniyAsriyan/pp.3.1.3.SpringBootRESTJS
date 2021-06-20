@@ -21,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
     private final RoleService roleService;
-    String message = "Register new user";
+    String message = " ";
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {
@@ -38,11 +38,12 @@ public class UserController {
             name = "";
         }
         model.addAttribute("current_user", "Hello, " + name);
+
         return "hello";
     }
 
     @GetMapping("login")
-    public String loginPage() {
+    public String loginPage(ModelMap model) {
 
         if (roleService.findAll().isEmpty()) {
             roleService.add(new Role("ROLE_USER"));
@@ -55,6 +56,12 @@ public class UserController {
             User admin = new User("admin", "123", "admin", "admin", 30, "admin@mail.com", adminRoles);
             userService.update(admin);
         }
+
+        if (model.getAttribute("userForm") == null) {
+            model.addAttribute("userForm", new User());
+        }
+        model.addAttribute("message", message);
+
         return "login";
     }
 
@@ -67,25 +74,16 @@ public class UserController {
     @PostMapping("/user/deleteAcc")
     public String deleteUser(Principal principal) {
         userService.deleteById(userService.findByLogin(principal.getName()).getId());
-        return "/login";
-    }
-
-    @GetMapping("/registration")
-    public String registration(ModelMap model) {
-
-        model.addAttribute("userForm", new User());
-        model.addAttribute("message", message);
-        return "registration";
+        return "redirect:/login";
     }
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") User userForm, ModelMap model) {
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getByName("ROLE_USER"));
-
+        message = "";
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
             message = "Incorrect password input";
-            return "redirect:/registration";
         }
 
         userForm.setRoles(roles);
@@ -93,7 +91,6 @@ public class UserController {
             userService.update(userForm);
         } catch (Exception e) {
             message = "User with that login already exists";
-            return "redirect:/registration";
         }
 
         return "redirect:/login";

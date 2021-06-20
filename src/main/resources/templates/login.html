@@ -1,28 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.springframework.org/security/tags">
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Log in</title>
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-
 </sec:authorize>
-<h1><b> Hello and welcome to my sexy app! </b></h1>
-<div>
-  <form method="POST" th:action="@{/login}">
-    <h2>Log in</h2>
-    <div>
-      <input name="login" type="text" placeholder="Login" autofocus/>
-      </br>
-      <input name="password" type="password" placeholder="Password"/>
-      <button type="submit">Accept</button>
-      <h1><a th:href="@{/registration}">Sign up</a></h1>
+<br>
+<br>
+<br>
+<div align="center" class="container-fluid col-sm-8 mx-auto p-0">
+    <form method="POST" th:action="@{/login}">
+
+        <div class="col-6 col-md-4 row">
+            <h4 align="center">Sign in</h4>
+            <input class="form-control" name="login" type="text" placeholder="Login" autofocus/></br>
+            <input class="form-control" name="password" type="password" placeholder="Password"/><br>
+            <button class="btn btn-primary col-12" type="submit" value="Submit">Sign in</button>
+            <br>
+            <button type="button" class="btn btn-secondary col-12" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Register new user
+            </button>
+        </div>
+        <div class="col-6 col-md-4">
+            <h5 style="color: red" th:type="text" th:utext="${message}"></h5>
+        </div>
+
+    </form>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST" action="#" th:action="@{/registration}" th:object="${userForm}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registration</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST" th:action="@{/registration}" th:object="${userForm}">
+                        <div class="modal-body">
+                            <div>
+                                <input class="form-control" type="text" th:field="*{login}" id="login"
+                                       placeholder="Login" autofocus>
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" th:field="*{name}" placeholder="Name" autofocus>
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" th:field="*{surname}" placeholder="Surname"
+                                       autofocus>
+                            </div>
+                            <div>
+                                <input class="form-control" type="number" th:field="*{age}" placeholder="Age" autofocus>
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" th:field="*{email}" placeholder="E-mail">
+                            </div>
+                            <div>
+                                <input class="form-control" type="password" th:field="*{password}"
+                                       placeholder="Password">
+                            </div>
+                            <div>
+                                <input class="form-control" type="password" th:field="*{passwordConfirm}"
+                                       placeholder="Confirm your password">
+                            </div>
+                            <button class="btn btn-primary col-12" type="submit">Register now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </form>
     </div>
-  </form>
+
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
 </html>
