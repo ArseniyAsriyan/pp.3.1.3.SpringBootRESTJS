@@ -1,21 +1,25 @@
 package com.PP311.mySpringBootApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import com.PP311.mySpringBootApp.model.Role;
 import com.PP311.mySpringBootApp.model.User;
 import com.PP311.mySpringBootApp.service.RoleService;
 import com.PP311.mySpringBootApp.service.UserService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Controller
+
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -28,29 +32,31 @@ public class AdminController {
         this.roleService = roleService;
     }
 
+    @Secured(value = {"ROLE_ADMIN"})
     @GetMapping
-    public String findAll(Model model) {
+    public String findAll(Model model, ModelMap modelMap, Principal principal) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
+        modelMap.addAttribute("current_user", userService.findByLogin(principal.getName()));
         return "/admin/user-list";
     }
 
     @GetMapping("/user-create")
-    public String createUserForm(User user) {
+    public String createUserForm(ModelMap modelMap, Principal principal, Model model) {
+        Set<Role> setOfAllRoles = roleService.findAll();
+        model.addAttribute("setOfAllRoles", setOfAllRoles);
+        model.addAttribute("user", new User());
+        modelMap.addAttribute("current_user", userService.findByLogin(principal.getName()));
         return "/admin/user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(User user) {
-        Set<Role> setRoles = new HashSet<>();
-        setRoles.add(roleService.getByName("ROLE_USER"));
-        User temp = new User(
-                user.getLogin(), user.getPassword(),
-                user.getName(), user.getSurname(),
-                user.getAge(), user.getEmail(),
-                setRoles);
+    public String createUser(@ModelAttribute("user") User user,@ModelAttribute("setOfAllRoles") Set<Role> roles) {
+//        Set<Role> roles = new HashSet<>();
+//        roles.add(user.tempRole);
+        user.setRoles(roles);
+        userService.saveUser(user);
 
-        userService.saveUser(temp);
         return "redirect:/admin/";
     }
 

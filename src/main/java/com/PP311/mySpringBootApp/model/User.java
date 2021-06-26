@@ -37,6 +37,7 @@ public class User implements UserDetails {
     @Transient
     private String passwordConfirm;
 
+
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -124,7 +125,7 @@ public class User implements UserDetails {
     public String getStringRoles() {
         StringBuilder sb = new StringBuilder();
         for (Role role : roles) {
-            sb.append(role.getRole()).append(" ");
+            sb.append(role.getRole().replaceFirst("ROLE_", "")).append(" ");
         }
         return sb.toString();
     }

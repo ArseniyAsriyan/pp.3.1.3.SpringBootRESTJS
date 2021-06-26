@@ -29,19 +29,6 @@ public class UserController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/hello")
-    public String getUsername(Principal principal, ModelMap model) {
-        String name;
-        try {
-            name = principal.getName();
-        } catch (NullPointerException e) {
-            name = "";
-        }
-        model.addAttribute("current_user", "Hello, " + name);
-
-        return "hello";
-    }
-
     @GetMapping("login")
     public String loginPage(ModelMap model) {
 
@@ -81,7 +68,7 @@ public class UserController {
     public String addUser(@ModelAttribute("userForm") User userForm, ModelMap model) {
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getByName("ROLE_USER"));
-        message = "";
+        message = "User successfully created";
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
             message = "Incorrect password input";
         }
@@ -93,7 +80,10 @@ public class UserController {
             message = "User with that login already exists";
         }
 
-        return "redirect:/login";
+        model.addAttribute("userForm", userForm);
+        model.addAttribute("message", message);
+
+        return "/login";
     }
 
 

@@ -14,28 +14,32 @@
     <title>Log in</title>
 </head>
 <body>
-<sec:authorize access="isAuthenticated()">
-</sec:authorize>
 <br>
 <br>
 <br>
-<div align="center" class="container-fluid col-sm-8 mx-auto p-0">
+<br>
+<br>
+
+<div class="container-fluid col-sm-8 mx-auto">
+
     <form method="POST" th:action="@{/login}">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-6 col-md-4 row">
 
-        <div class="col-6 col-md-4 row">
-            <h4 align="center">Sign in</h4>
-            <input class="form-control" name="login" type="text" placeholder="Login" autofocus/></br>
-            <input class="form-control" name="password" type="password" placeholder="Password"/><br>
-            <button class="btn btn-primary col-12" type="submit" value="Submit">Sign in</button>
-            <br>
-            <button type="button" class="btn btn-secondary col-12" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Register new user
-            </button>
-        </div>
-        <div class="col-6 col-md-4">
-            <h5 style="color: red" th:type="text" th:utext="${message}"></h5>
-        </div>
+                <h4 align="center">Sign in</h4>
+                <input class="form-control" name="login" type="text" placeholder="Login" autofocus/></br>
+                <input class="form-control" name="password" type="password" placeholder="Password"/><br>
+                <button class="btn btn-primary col-12" type="submit" value="Submit">Sign in</button>
+                <br>
+                <button type="button" class="btn btn-secondary col-12" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Register new user
+                </button>
 
+
+                    <h5 align="center" style="color: red" th:type="text" th:utext="${message}"></h5>
+
+            </div>
+        </div>
     </form>
 
 
@@ -51,6 +55,7 @@
                     <form method="POST" th:action="@{/registration}" th:object="${userForm}">
                         <div class="modal-body">
                             <div>
+                                <h5 style="color: red" th:type="text" th:utext="${message}"></h5>
                                 <input class="form-control" type="text" th:field="*{login}" id="login"
                                        placeholder="Login" autofocus>
                             </div>
@@ -82,7 +87,6 @@
             </div>
         </form>
     </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
