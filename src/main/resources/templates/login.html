@@ -36,7 +36,7 @@
                 </button>
 
 
-                    <h5 align="center" style="color: red" th:type="text" th:utext="${message}"></h5>
+                <h5 align="center" style="color: red" th:type="text" th:utext="${message}"></h5>
 
             </div>
         </div>
@@ -53,34 +53,34 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="POST" th:action="@{/registration}" th:object="${userForm}">
-                        <div class="modal-body">
-                            <div>
+                        <div class="modal-body" align="center">
+                            <div class="col-8">
                                 <h5 style="color: red" th:type="text" th:utext="${message}"></h5>
                                 <input class="form-control" type="text" th:field="*{login}" id="login"
                                        placeholder="Login" autofocus>
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="text" th:field="*{name}" placeholder="Name" autofocus>
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="text" th:field="*{surname}" placeholder="Surname"
                                        autofocus>
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="number" th:field="*{age}" placeholder="Age" autofocus>
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="text" th:field="*{email}" placeholder="E-mail">
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="password" th:field="*{password}"
                                        placeholder="Password">
                             </div>
-                            <div>
+                            <div class="col-8">
                                 <input class="form-control" type="password" th:field="*{passwordConfirm}"
                                        placeholder="Confirm your password">
                             </div>
-                            <button class="btn btn-primary col-12" type="submit">Register now</button>
+                            <button class="btn btn-primary col-6" type="submit">Register now</button>
                         </div>
                     </form>
                 </div>

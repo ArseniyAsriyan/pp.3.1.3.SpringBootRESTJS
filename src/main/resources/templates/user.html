@@ -24,80 +24,150 @@
         </div>
     </header>
 
-    <!--боковая панель-->
-    <div class="row">
-        <div class="col-2">
-            <div class="d-flex flex-column flex-shrink-0 p-10 bg-light">
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="/admin" class="nav-link link-dark" aria-current="page" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                            Admin
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/user" class="nav-link active">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#speedometer2"></use>
-                            </svg>
-                            User
-                        </a>
-
-                </ul>
-                <hr>
-            </div>
-        </div>
-        <!--конец боковой панели-->
-
 
     <title>Users</title>
 </head>
 <body>
 
-<th:block th:object="${current_user}">
-    <p>
-    <h2>Info about your account:</h2><br>
+<div class="row">
 
-    <p>
-    <h3>Login</h3>
-    <h4 th:utext="*{getUsername()}"></h4>
-    <p>
-    <h3>Name</h3>
-    <h4 th:utext="*{getName()}"></h4>
-    <p>
-    <h3>Surname</h3>
-    <h4 th:utext="*{getSurname()}"></h4>
-    <p>
-    <h3>Age</h3>
-    <h4 th:utext="*{getAge()}"></h4>
-    <p>
-    <h3>E-mail</h3>
-    <h4 th:utext="*{email}"></h4>
+    <!--боковая панель-->
+    <div class="col-2">
+        <div class="d-flex flex-column flex-shrink-0 p-10 bg-light">
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link link-dark" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home"></use>
+                        </svg>
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="/user" class="nav-link active">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2"></use>
+                        </svg>
+                        User
+                    </a>
 
-    <p>
-    <h3>Roles</h3>
-    <h4 th:utext="*{getStringRoles()}"></h4>
-</th:block>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <!--конец боковой панели-->
 
-<sec:authorize access="isAuthenticated()">
-    <form action="/user/deleteAcc" th:href="@{/logout}" method="post">
-        <h4>
-            <button>Delete account</button>
-        </h4>
-    </form>
-</sec:authorize>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <div class="col-10">
+        <div class="col-9">
+            <h2 class="text-left">User information-page</h2>
+            <div class="card text-center">
 
+                <div class="card-body">
+
+                    <div class="card-body">
+                        <!--начало таблицы-->
+                        <div class="container-fluid">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Login</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Age</th>
+                                    <th>E-mail</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:object="${current_user}">
+                                    <td th:text="${current_user.id}"></td>
+                                    <td th:text="${current_user.login}"></td>
+                                    <td th:text="${current_user.name}"></td>
+                                    <td th:text="${current_user.surname}"></td>
+                                    <td th:text="${current_user.age}"></td>
+                                    <td th:text="${current_user.email}"></td>
+                                    <td th:text="${current_user.getStringRoles()}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+
+                        </div>
+
+                        <!--конец таблицы-->
+                    </div>
+
+                    <sec:authorize access="isAuthenticated()">
+                        <form action="/user/deleteAcc" th:href="@{/logout}" method="post">
+
+                            <button class="btn btn-danger">Delete account</button>
+
+                        </form>
+                    </sec:authorize>
+
+
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                            crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                            crossorigin="anonymous"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                            crossorigin="anonymous"></script>
+
+                    <!--конец таблицы-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
+
+
+
+<!--<div class="card-body">-->
+<!--    &lt;!&ndash;начало таблицы&ndash;&gt;-->
+<!--    <div class="container-fluid">-->
+<!--        <table class="table table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>ID</th>-->
+<!--                <th>Login</th>-->
+<!--                <th>First name</th>-->
+<!--                <th>Last name</th>-->
+<!--                <th>Age</th>-->
+<!--                <th>E-mail</th>-->
+<!--                <th>Role</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:object="${current_user}">-->
+<!--                <td th:text="${current_user.id}"></td>-->
+<!--                <td th:text="${current_user.login}"></td>-->
+<!--                <td th:text="${current_user.name}"></td>-->
+<!--                <td th:text="${current_user.surname}"></td>-->
+<!--                <td th:text="${current_user.age}"></td>-->
+<!--                <td th:text="${current_user.email}"></td>-->
+<!--                <td th:text="${current_user.getStringRoles()}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <br/>-->
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash;конец таблицы&ndash;&gt;-->
+<!--</div>-->
+
+<!--<sec:authorize access="isAuthenticated()">-->
+<!--    <form action="/user/deleteAcc" th:href="@{/logout}" method="post">-->
+
+<!--        <button class="btn btn-danger">Delete account</button>-->
+
+<!--    </form>-->
+<!--</sec:authorize>-->

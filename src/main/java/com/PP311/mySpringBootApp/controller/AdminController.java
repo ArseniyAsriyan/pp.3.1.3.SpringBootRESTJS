@@ -38,24 +38,33 @@ public class AdminController {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         modelMap.addAttribute("current_user", userService.findByLogin(principal.getName()));
+
+        Set<Role> setOfAllRoles = roleService.findAll();
+        model.addAttribute("setOfAllRoles", setOfAllRoles);
+        model.addAttribute("roles", new ArrayList<>());
+
         return "/admin/user-list";
     }
 
     @GetMapping("/user-create")
     public String createUserForm(ModelMap modelMap, Principal principal, Model model) {
-        Set<Role> setOfAllRoles = roleService.findAll();
-        model.addAttribute("setOfAllRoles", setOfAllRoles);
-        model.addAttribute("user", new User());
+        User user = new User();
+        user.setRoles(roleService.findAll());
+        model.addAttribute("user", user);
+        model.addAttribute("hhh", "haha");
         modelMap.addAttribute("current_user", userService.findByLogin(principal.getName()));
         return "/admin/user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute("user") User user,@ModelAttribute("setOfAllRoles") Set<Role> roles) {
-//        Set<Role> roles = new HashSet<>();
-//        roles.add(user.tempRole);
+    public String createUser(@ModelAttribute("user") User user) {
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(roleService.getByName(role.getRole()));
+        }
         user.setRoles(roles);
-        userService.saveUser(user);
+
+        userService.update(user);
 
         return "redirect:/admin/";
     }
@@ -77,12 +86,13 @@ public class AdminController {
     }
 
 
-    @PostMapping("/user-update/")
-    public String updateUser(User user, long id,@ModelAttribute("userRoles") ArrayList<Role> userRoles) {
+    @PostMapping("/user-update/{id}")
+    public String updateUser(User user, long id,@ModelAttribute("userRoles") ArrayList<Role> userRoles, @RequestParam(value = "SetOfAllRoles") HashSet<Role> SetOfAllRoles) {
         Set<Role> roles = new HashSet<>();
-        for (Role role : user.getRoles()) {
+        for (Role role : SetOfAllRoles) {
             roles.add(roleService.getByName(role.getRole()));
         }
+        user.setPassword(userService.findById(user.getId()).getPassword());
         user.setRoles(roles);
         userService.update(user.getId(), user);
 
