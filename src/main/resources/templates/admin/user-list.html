@@ -105,10 +105,7 @@
                                         <td th:text="${user.email}"></td>
                                         <td th:text="${user.getStringRoles()}"></td>
                                         <td>
-                                            <!--                                            <button class="btn btn-info"-->
-                                            <!--                                                    th:href="@{/admin/user-update/{id}(id=${user.id})}">Edit-->
-                                            <!--                                            </button>-->
-                                            <!-- Button trigger modal edit user-->
+
 
                                             <button type="button" class="btn btn-info edit-btn" data-toggle="modal"
                                                     th:data-target="${'#edit' + user.id}">
@@ -172,7 +169,7 @@
                                                                            name="login">
                                                                 </div>
                                                                 <select class="form-select col-6" multiple
-                                                                        aria-label="Choose roles" name="SetOfAllRoles">
+                                                                        aria-label="Choose roles" name="setOfAllRoles">
                                                                     <option th:each="role : ${setOfAllRoles}"
                                                                             th:text="${role.role.replace('ROLE_', '')}"
                                                                             th:value="${role.getRole()}"
@@ -196,9 +193,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <!--                                            <button class="btn btn-danger"-->
-                                            <!--                                                    th:href="@{/admin/user-delete/{id}(id=${user.id})}">Delete-->
-                                            <!--                                            </button>-->
+
                                             <button type="button" class="btn btn-danger edit-btn" data-toggle="modal"
                                                     th:data-target="${'#delete' + user.id}">
                                                 Delete
@@ -230,37 +225,45 @@
                                                                 </div>
                                                                 <div class="mb-3 col-6">
                                                                     <label for="delName" class="form-label">Name</label>
-                                                                    <input readonly type="text" class="form-control" id="delName"
+                                                                    <input readonly type="text" class="form-control"
+                                                                           id="delName"
                                                                            placeholder="Name" th:value="${user.name}"
                                                                            name="name">
                                                                 </div>
                                                                 <div class="mb-3 col-6">
                                                                     <label for="delSurname"
                                                                            class="form-label">Surname</label>
-                                                                    <input readonly type="text" class="form-control" id="delSurname"
+                                                                    <input readonly type="text" class="form-control"
+                                                                           id="delSurname"
                                                                            placeholder="Surname"
                                                                            th:value="${user.surname}" name="surname">
                                                                 </div>
                                                                 <div class="mb-3 col-6">
                                                                     <label for="delAge" class="form-label">Age</label>
-                                                                    <input readonly type="number" class="form-control" id="delAge"
+                                                                    <input readonly type="number" class="form-control"
+                                                                           id="delAge"
                                                                            placeholder="Age" th:value="${user.age}"
                                                                            name="age">
                                                                 </div>
                                                                 <div class="mb-3 col-6">
-                                                                    <label for="delEmail" class="form-label">E-Mail</label>
-                                                                    <input readonly type="email" class="form-control" id="delEmail"
+                                                                    <label for="delEmail"
+                                                                           class="form-label">E-Mail</label>
+                                                                    <input readonly type="email" class="form-control"
+                                                                           id="delEmail"
                                                                            placeholder="E-Mail" th:value="${user.email}"
                                                                            name="email">
                                                                 </div>
                                                                 <div class="mb-3 col-6">
-                                                                    <label for="delLogin" class="form-label">Login</label>
-                                                                    <input readonly type="text" class="form-control" id="delLogin"
+                                                                    <label for="delLogin"
+                                                                           class="form-label">Login</label>
+                                                                    <input readonly type="text" class="form-control"
+                                                                           id="delLogin"
                                                                            placeholder="Login" th:value="${user.login}"
                                                                            name="login">
                                                                 </div>
                                                                 <select class="form-select col-6" multiple
-                                                                        aria-label="Choose roles" name="SetOfAllRoles" disabled>
+                                                                        aria-label="Choose roles" name="SetOfAllRoles"
+                                                                        disabled>
                                                                     <option th:each="role : ${user.roles}"
                                                                             th:text="${role.role.replace('ROLE_', '')}"
                                                                             th:value="${role.getRole()}"
@@ -282,7 +285,6 @@
                                                     </div>
                                                 </div>
                                             </form>
-
 
 
                                         </td>
