@@ -76,8 +76,7 @@ public class AdminController {
 
 
     @PostMapping("/user-update/{id}")
-    public String updateUser(User user, long id,@ModelAttribute("userRoles") ArrayList<Role> userRoles,
-                             @RequestParam(value = "setOfAllRoles", required = false) HashSet<Role> setOfAllRoles) {
+    public String updateUser(User user, @RequestParam(value = "setOfAllRoles", required = false) HashSet<Role> setOfAllRoles) {
         Set<Role> roles = new HashSet<>();
         // пояснения за говнокод: строки ниже позволят корректно записывать роли и не стирать их, если в представлении кто-то забудет их указать
         if(setOfAllRoles!=null) {
