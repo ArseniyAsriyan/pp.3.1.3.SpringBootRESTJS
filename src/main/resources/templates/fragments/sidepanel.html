@@ -1,4 +1,4 @@
-<div th:fragment="sidepanelAdmin">
+<div th:fragment="sidepanelAdmin" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="d-flex flex-column flex-shrink-0 p-10 bg-light">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
@@ -20,11 +20,11 @@
     </div>
 </div>
 
-<div th:fragment="sidepanelUser">
+<div th:fragment="sidepanelUser" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="d-flex flex-column flex-shrink-0 p-10 bg-light">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="/admin" class="nav-link link-dark" aria-current="page">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin" class="nav-link link-dark" aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#home"></use>
                     </svg>
