@@ -1,0 +1,28 @@
+
+<div th:fragment="sidepanel">
+
+  <div class="col-2">
+    <div class="d-flex flex-column flex-shrink-0 p-10 bg-light">
+
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="/admin" class="nav-link link-dark" aria-current="page">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#home"></use>
+            </svg>
+            Admin
+          </a>
+        </li>
+        <li>
+          <a href="/user" class="nav-link active">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#speedometer2"></use>
+            </svg>
+            User
+          </a>
+
+      </ul>
+
+    </div>
+  </div>
+</div>

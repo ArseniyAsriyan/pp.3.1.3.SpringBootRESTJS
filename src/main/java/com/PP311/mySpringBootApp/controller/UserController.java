@@ -11,23 +11,25 @@ import com.PP311.mySpringBootApp.model.Role;
 import com.PP311.mySpringBootApp.model.User;
 import com.PP311.mySpringBootApp.service.RoleService;
 import com.PP311.mySpringBootApp.service.UserService;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
+//@RestController
 @Controller
 public class UserController {
 
-    private final UserService userService;
-    private final RoleService roleService;
-    String message = " ";
+    @Autowired
+    private UserService userService;
 
     @Autowired
-    public UserController(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
+    private RoleService roleService;
+
+    private String message = " ";
+
+
 
     @GetMapping("login")
     public String loginPage(ModelMap model) {

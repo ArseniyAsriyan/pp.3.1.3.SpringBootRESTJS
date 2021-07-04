@@ -1,0 +1,28 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->
+<div th:fragment="navbar">
+    <header class="bd-header bg-dark py-1 d-flex align-items-stretch border-bottom border-dark">
+        <div class="container-fluid d-flex align-items-center">
+            <div class="container alight-items-left">
+                <b>
+                    <text th:text="${current_user.login}" class="text-white fw-bolder"></text>
+                </b>
+                <text class="text-white" th:text="' with roles: ' + ${current_user.getStringRoles()}">with roles:</text>
+            </div>
+
+
+            <div class="container align-items-right"></div>
+            <a href="/logout" class="text-secondary align-items-right" hreflang="ar">Logout</a>
+        </div>
+</header>
+</div>
+
+

@@ -18,8 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+//@RestController
 @Controller
-
 @RequestMapping("/admin")
 public class AdminController {
 
