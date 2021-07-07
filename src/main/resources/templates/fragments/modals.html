@@ -1,0 +1,105 @@
+<div th:fragment="editUserModal">
+    <div class="editUser" align="center">
+        <form th:action="@{/api/v1/edit/{id}}" method="PUT">
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit user</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="id" class="col-form-label">ID</label>
+                            <input readonly type="number" class="form-control" id="id" name="id" value="">
+
+                            <label for="loginEd" class="col-form-label">Login</label>
+                            <input type="text" class="form-control" id="loginEd" name="login" value="">
+
+                            <label for="nameEd" class="col-form-label">First Name</label>
+                            <input type="text" class="form-control" id="nameEd" name="name" value="">
+
+                            <label for="surnameEd" class="col-form-label">Last name</label>
+                            <input type="text" class="form-control" id="surnameEd" name="surname" value="">
+
+                            <label for="ageEd" class="col-form-label">Email</label>
+                            <input type="number" class="form-control" id="ageEd" name="age" value="">
+
+                            <label for="emailEd" class="col-form-label">Email</label>
+                            <input type="text" class="form-control" id="emailEd" name="email" value="">
+
+
+
+                            <label><b>Role</b>
+                                <select multiple size="2" name="select_role" class="form-control"
+                                        id="selectRoleEd">
+                                    <option name="ROLE_ADMIN" value="2">ADMIN</option>
+                                    <option name="ROLE_USER" value="1" selected="selected">USER</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary editButton" value="Edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="deleteUserModal">
+    <div class="deleteUser" align="center">
+        <form th:action="@{/api/v1/edit/{id}}" method="DELETE">
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="id" class="col-form-label">ID</label>
+                            <input readonly type="number" class="form-control" id="idDel" name="id" value="">
+
+                            <label for="loginEd" class="col-form-label">Login</label>
+                            <input readonly type="text" class="form-control" id="loginDel" name="login" value="">
+
+                            <label for="nameEd" class="col-form-label">First Name</label>
+                            <input readonly type="text" class="form-control" id="nameDel" name="name" value="">
+
+                            <label for="surnameEd" class="col-form-label">Last name</label>
+                            <input readonly type="text" class="form-control" id="surnameDel" name="surname" value="">
+
+                            <label for="ageEd" class="col-form-label">Email</label>
+                            <input readonly type="number" class="form-control" id="ageDel" name="age" value="">
+
+                            <label for="emailEd" class="col-form-label">Email</label>
+                            <input readonly type="text" class="form-control" id="emailDel" name="email" value="">
+
+
+
+                            <label><b>Role</b>
+                                <select multiple size="2" name="select_role" class="form-control"
+                                        id="selectRoleDel">
+                                    <option name="ROLE_ADMIN" value="2">ADMIN</option>
+                                    <option name="ROLE_USER" value="1" selected="selected">USER</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger deleteButton" value="Delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

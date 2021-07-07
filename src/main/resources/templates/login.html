@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -43,7 +44,7 @@
         </div>
     </form>
 
-    <form method="POST" action="#" th:action="@{/registration}" th:object="${userForm}">
+    <form id="Registration_Form">
     <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
             <div class="modal-dialog">
@@ -53,38 +54,33 @@
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="POST" th:action="@{/registration}" th:object="${userForm}">
+
                         <div class="modal-body" align="center">
                             <div class="col-8">
-                                <h5 style="color: red" th:type="text" th:utext="${message}"></h5>
-                                <input class="form-control" type="text" th:field="*{login}" id="login"
+                                <input class="form-control" type="text" id="login"
                                        placeholder="Login" autofocus>
                             </div>
                             <div class="col-8">
-                                <input class="form-control" type="text" th:field="*{name}" placeholder="Name" autofocus>
+                                <input class="form-control" type="text" id="name" placeholder="Name" autofocus>
                             </div>
                             <div class="col-8">
-                                <input class="form-control" type="text" th:field="*{surname}" placeholder="Surname"
+                                <input class="form-control" type="text" id="surname" placeholder="Surname"
                                        autofocus>
                             </div>
                             <div class="col-8">
-                                <input class="form-control" type="number" th:field="*{age}" placeholder="Age" autofocus>
+                                <input class="form-control" type="number" id="age" placeholder="Age" autofocus>
                             </div>
                             <div class="col-8">
-                                <input class="form-control" type="text" th:field="*{email}" placeholder="E-mail">
+                                <input class="form-control" type="text" id="email" placeholder="E-mail">
                             </div>
                             <div class="col-8">
-                                <input class="form-control" type="password" th:field="*{password}"
+                                <input class="form-control" type="password" id="password"
                                        placeholder="Password">
                             </div>
-                            <div class="col-8">
-                                <input class="form-control" type="password" th:field="*{passwordConfirm}"
-                                       placeholder="Confirm your password">
-                            </div>
 
-                            <button class="btn btn-primary col-6" type="submit">Register now</button>
+                            <button class="btn btn-primary col-6 RegisterButton" type="submit">Register now</button>
                         </div>
-                    </form>
+
                 </div>
             </div>
 
@@ -107,10 +103,8 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/js/public/login.js" type="text/javascript"></script>
 
-<!--<script src="js/main.js" type="text/javascript"></script>-->
-<script th:src="@{main.js}" type="text/javascript"></script>
 </body>
 </html>

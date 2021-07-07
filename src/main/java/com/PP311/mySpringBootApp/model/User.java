@@ -1,5 +1,6 @@
 package com.PP311.mySpringBootApp.model;
 
+import com.PP311.mySpringBootApp.service.RoleService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -45,6 +46,7 @@ public class User implements UserDetails {
 
     public User() {
         roles = new HashSet<>();
+
     }
 
     public User(User user) {

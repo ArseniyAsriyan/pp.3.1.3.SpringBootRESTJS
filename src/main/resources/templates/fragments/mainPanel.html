@@ -1,0 +1,97 @@
+<div th:fragment="mainPanel">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+               aria-controls="nav-home" aria-selected="true">Users table</a>
+            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+               aria-controls="nav-profile" aria-selected="false">New User</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <b>Table Users</b>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped border">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Login</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Age</th>
+                                <th>E-mail</th>
+                                <th>Role</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody id="users_table">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <b>Add new user</b>
+                    </div>
+                    <div class="card-body" align="center">
+
+                        <div class="addUser">
+                            <form id="New_User_Form">
+
+                                <div class="form-group">
+
+                                    <label for="login"><b>Login</b></label>
+                                    <input type="text" class="form-control mb-1 col-4"
+                                           id="login" aria-describedby="loginHelp">
+
+                                    <label for="name"><b>First name</b></label>
+                                    <input type="text" class="form-control mb-1 col-4"
+                                           id="name" aria-describedby="nameHelp">
+
+                                    <label for="surname"><b>Last name</b></label>
+                                    <input type="text" class="form-control mb-1 col-4"
+                                           id="surname" aria-describedby="surnameHelp">
+
+                                    <label for="age"><b>Age</b></label>
+                                    <input type="number" class="form-control mb-1 col-4"
+                                           id="age" aria-describedby="ageHelp">
+
+                                    <label for="email"><b>E-mail</b></label>
+                                    <input type="email" class="form-control mb-1 col-4"
+                                           id="email" aria-describedby="emailHelp">
+
+                                    <label for="password"><b>Password</b></label>
+                                    <input type="password"
+                                           class="form-control mb-1 col-4"
+                                           id="password" aria-describedby="passwordHelp">
+
+                                    <label><b>Role</b>
+                                        <select multiple size="2" name="select_role" class="form-control"
+                                                id="selectRole">
+                                            <option name="ROLE_ADMIN" value="2">ADMIN</option>
+                                            <option name="ROLE_USER" value="1" selected="selected">USER</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-success col-2 AddBtn">Add new user</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
