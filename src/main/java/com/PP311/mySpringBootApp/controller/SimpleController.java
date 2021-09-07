@@ -43,7 +43,7 @@ public class SimpleController {
         model.addAttribute("setOfAllRoles", setOfAllRoles);
         model.addAttribute("roles", new ArrayList<>());
 
-        return "admin/user-list";
+        return "/admin/user-list";
     }
 
 
