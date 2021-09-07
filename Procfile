@@ -1,1 +1,1 @@
-web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/pp.3.1.3.SpringBootRESTJS.jar
+web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/mySpringBootApp-0.0.1-SNAPSHOT.jar
