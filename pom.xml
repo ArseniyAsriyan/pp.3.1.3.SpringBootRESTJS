@@ -11,7 +11,7 @@
 	<groupId>com.PP-3.1.1</groupId>
 	<artifactId>mySpringBootApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+<!--	<packaging>war</packaging>-->
 	<name>mySpringBootApp</name>
 	<description>Spring Boot 3.1.1.PreProject</description>
 	<properties>
